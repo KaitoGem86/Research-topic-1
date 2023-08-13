@@ -120,13 +120,14 @@ def r(h,AP_index,user_index):
 
 
 #Plot APs and Users Position
-# plt.title("APs and Users Position")
-# AP_x,AP_y=zip(*list_of_AP)
-# User_x,User_y=zip(*list_of_users)
-# plt.scatter(AP_x,AP_y,cmap='hot')
-# plt.scatter(User_x,User_y,cmap='hot')
-# plt.grid()
-# plt.show(block=False)
+def plot_aps_and_users_pos(list_of_AP,list_of_users):
+    plt.title("APs and Users Position")
+    AP_x,AP_y=zip(*list_of_AP)
+    User_x,User_y=zip(*list_of_users)
+    plt.scatter(AP_x,AP_y,cmap='hot')
+    plt.scatter(User_x,User_y,cmap='hot')
+    plt.grid()
+    plt.show(block=False)
 
 
 #the value of r_bkf is immediate

@@ -27,9 +27,9 @@ NUM_OF_ACTION = NUM_OF_AP^NUM_OF_APP
 def initialize_state_matrix():
     state = np.matrix(np.zeros(shape=(NUM_OF_USER, NUM_OF_APP)))
     return state
-def update_state():
-    #state(t)=action(t-1)
-    return
+def update_state(state,action):
+    # check_drop    
+    return state
 
 # CREATE REWARD
 # Return a reward array of each user
@@ -117,23 +117,39 @@ def check_drop(action_of_user, load, achievable_rate_bk):
 
 # Initialize Q
 def initialize_Q():
-    Q = np.matrix(np.zeros(shape=(NUM_OF_AP, NUM_OF_APP)))#?
     #shape=number of states * number of actions
+    Q = np.matrix(np.zeros(shape=(NUM_OF_STATE, NUM_OF_ACTION)))
     return Q
 
 
-def update_Q(state, action, gamma):
-    return
+def update_Q(state, action, reward,Q_table):
+    # Find max Q value for state t+1
+    next_action_row = Q_table[action] #state(t+1) = action(t)
+    maxQ = next_action_row.max()
+    Q_table[state,action] = Q_table[state,action] + ALPHA*(reward + BETA *maxQ - Q_table[state,action] )
 
 
 # TRAINING
-    # Read from old Q-table
+    # Read from old Q-tables
+        
     # Train with new data
-# users_positions=env.initialize_users_pos()
-# aps_positions=env.initialize_aps_pos()
-# state=initialize_state_matrix()
+        # for frame in range(NUM_OF_FRAME):
+            # user_positions = env.initialize_users_pos()
+            # ap_positions = env.initialize_aps_pos()
+            # h = env.initialize_users_h(user_positions, ap_positions)
+            # r = achievable_rate(h)
+            # state_of_all_user = initialize_state_matrix()
+            
+            # for k in range(NUM_OF_USER)
+                # state = state_of_all_user[k]
+                # action = chose_action(state)
+                # load = AP_load(state_of_all_user, r)
+                # reward = reward(state,action,load,r)
+                # Q = update_Q(state, action, reward, Q_tables[k])
+                # state = update_state(state, action)
+                # state_of_all_user[k] = state
 
-    # Write results to data files
+            # Write results to data files
 
 
 # Get index of user's state in Q table
